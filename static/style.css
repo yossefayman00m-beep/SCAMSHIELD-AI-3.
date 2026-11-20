@@ -7,3 +7,10 @@ form{margin-top:35px}label{display:block;margin-bottom:10px;font-size:13px;color
 .result,.how{background:#0e2137;border:1px solid #ffffff18;border-radius:18px;padding:26px;margin:28px 0}.resulttop{display:flex;justify-content:space-between;align-items:center}.result h2{margin:8px 0}.score{font-size:42px;font-weight:bold;color:var(--cyan)}.score small{font-size:13px;color:var(--muted)}.meter{height:9px;background:#253c54;border-radius:20px;overflow:hidden;margin:18px 0 25px}.meter span{display:block;height:100%;background:var(--cyan)}.result li{color:#c5d4e4;line-height:1.6;margin:8px 0}.how h2{margin-top:0}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.cards article{background:#142b44;padding:18px;border-radius:12px}.cards article b{color:var(--cyan)}.cards h3{margin:12px 0 6px}.cards p{color:var(--muted);font-size:14px;line-height:1.5;margin:0}
 aside{border-left:3px solid var(--cyan);padding:15px 18px;background:#10243b;color:#c5d4e4;line-height:1.6;font-size:13px}footer{text-align:center;color:#7189a2;padding:25px;font-size:12px}
 @media(max-width:600px){.inputrow{flex-direction:column}.inputrow button{padding:15px}.cards{grid-template-columns:1fr}main{padding-top:45px}}
+.logo {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    border-radius: 12px;
+    margin-right: 10px;
+}
