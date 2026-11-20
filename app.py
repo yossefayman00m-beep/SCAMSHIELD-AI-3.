@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 from urllib.parse import urlparse
 import re
 
@@ -65,6 +65,11 @@ def index():
         submitted = request.form.get("url", "")
         result = assess_url(submitted)
     return render_template("index.html", result=result, submitted=submitted)
-
+@app.route("/google05f32e3f870045f3.html")
+def google_verification():
+    return send_from_directory(
+        app.root_path,
+        "google05f32e3f870045f3.html"
+    )
 if __name__ == "__main__":
     app.run(debug=True)
