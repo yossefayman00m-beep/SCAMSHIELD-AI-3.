@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SCAMSHIELD AI | Link Risk Checker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header><div class="brand"><span class="mark">🛡</span><div><b>SCAMSHIELD</b><small>AI LINK RISK CHECKER</small></div></div><span class="tag">HACKATHON MVP</span></header>
+<main>
+  <section class="hero">
+    <p class="eyebrow">THINK BEFORE YOU CLICK</p>
+    <h1>Check a link.<br><em>Stay one step ahead.</em></h1>
+    <p class="intro">A prototype that checks a website address for common warning signs and explains what it finds.</p>
+    <form method="post">
+      <label for="url">Website address</label>
+      <div class="inputrow"><input id="url" name="url" value="{{ submitted }}" placeholder="example.com or https://example.com" required><button>CHECK LINK</button></div>
+    </form>
+    <p class="privacy">Demo tip: use a link as text only. Do not open suspicious links to test them.</p>
+  </section>
+  {% if result %}
+  <section class="result">
+    <div class="resulttop"><div><p class="eyebrow">SCAN RESULT</p><h2>{{ result.level }}</h2></div><div class="score">{{ result.score }}<small>/100</small></div></div>
+    <div class="meter"><span style="width: {{ result.score }}%"></span></div>
+    <h3>What we noticed</h3><ul>{% for reason in result.reasons %}<li>{{ reason }}</li>{% endfor %}</ul>
+  </section>
+  {% endif %}
+  <section class="how"><h2>How it works</h2><div class="cards"><article><b>01</b><h3>Inspect</h3><p>Checks the URL structure and domain.</p></article><article><b>02</b><h3>Assess</h3><p>Looks for a small set of known warning signs.</p></article><article><b>03</b><h3>Explain</h3><p>Shows a score and the reasons behind it.</p></article></div></section>
+  <aside><b>Important:</b> A low score does not mean a website is safe. This MVP uses transparent rules, not a trained AI model or live threat-intelligence database. Never enter passwords, payment details, or personal information on a site you do not trust.</aside>
+</main>
+<footer>SCAMSHIELD AI · Educational prototype · Built for demonstration</footer>
+</body></html>
