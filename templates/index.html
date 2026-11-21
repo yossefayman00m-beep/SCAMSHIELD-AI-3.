@@ -11,7 +11,8 @@
 
 <header class="navbar">
     <div class="brand">
-        <img src="{{ url_for('static', filename='d538ddeb-d47d-46ed-b900-54e9f63cf324.png') }}" class="logo" alt="Logo">
+        <img src="{{ url_for('static', filename='d538ddeb-d47d-46ed-b900-54e9f63cf324.png') }}"
+             class="logo" alt="Logo">
         <div>
             <b>SCAMSHIELD AI</b>
             <small>SMART LINK PROTECTION</small>
@@ -25,6 +26,15 @@
     </nav>
 
     <div class="nav-actions">
+        {% if session.get('user_id') %}
+            <a href="{{ url_for('history') }}" class="secondary-btn">Scan History</a>
+            <span>{{ session.get('username') }}</span>
+            <a href="{{ url_for('logout') }}" class="secondary-btn">Logout</a>
+        {% else %}
+            <a href="{{ url_for('login') }}" class="secondary-btn">Login</a>
+            <a href="{{ url_for('register') }}" class="primary-btn">Sign Up</a>
+        {% endif %}
+
         <button type="button" id="themeBtn">☀️</button>
         <button type="button" id="langBtn">العربية</button>
     </div>
@@ -33,23 +43,22 @@
 <main id="home">
 
 <section class="hero">
-    <span class="eyebrow">✦ YOUR DIGITAL SECURITY PARTNER</span
-<h1 id="heroTitle">
-  <h1 id="heroTitle">
-  Browse Smarter.<br>
-  <em>Stay Safer.</em>
-</h1>
+    <span class="eyebrow">✦ YOUR DIGITAL SECURITY PARTNER</span>
+
+    <h1 id="heroTitle">
         Browse Smarter.<br>
-        <p class="intro" id="heroIntro">
-  Protect yourself from suspicious links with SCAMSHIELD AI.
-  Check website addresses and understand potential warning signs.
-</p>      
-    
+        <em>Stay Safer.</em>
+    </h1>
+
+    <p class="intro" id="heroIntro">
+        Protect yourself from suspicious links with SCAMSHIELD AI.
+        Check website addresses and understand potential warning signs.
+    </p>
+
     <div class="hero-buttons">
-        
-<a href="#scanner" class="primary-btn" id="scanBtn">Start Scanning →</a>
-<a href="#awareness" class="secondary-btn" id="learnBtn">Learn Security</a>    
-    
+        <a href="#scanner" class="primary-btn" id="scanBtn">Start Scanning →</a>
+        <a href="#awareness" class="secondary-btn" id="learnBtn">Learn Security</a>
+    </div>
 </section>
 
 <section class="dashboard">
@@ -90,7 +99,7 @@
     <h2>Check Before You Click</h2>
     <p>Enter a website address to examine common risk indicators.</p>
 
-    <form method="POST">
+    <form method="POST" action="{{ url_for('index') }}">
         <label for="url">Website Address</label>
         <div class="inputrow">
             <input
@@ -179,43 +188,51 @@ themeBtn.addEventListener("click", () => {
         document.body.classList.contains("light-mode") ? "🌙" : "☀️";
 });
 
-
 const langBtn = document.getElementById("langBtn");
-
 let currentLang = "en";
 
 const translations = {
-  en: {
-    title: "Stay Safe",
-    intro: "Protect yourself from suspicious links with SCAMSHIELD AI. Check website addresses and understand potential warning signs.",
-    scan: "Start Scanning",
-    learn: "Learn Security",
-    dashboard: "Security Dashboard",
-    protection: "YOUR PROTECTION CENTER",
-    online: "System Online"
-  },
-  ar: {
-    title: "ابقَ آمناً",
-    intro: "احمِ نفسك من الروابط المشبوهة باستخدام SCAMSHIELD AI. افحص عناوين المواقع وتعرّف على علامات التحذير.",
-    scan: "ابدأ الفحص",
-    learn: "تعلم الأمان",
-    dashboard: "لوحة التحكم الأمنية",
-    protection: "مركز الحماية الخاص بك",
-    online: "النظام يعمل"
-  }
+    en: {
+        title: "Browse Smarter.",
+        intro: "Protect yourself from suspicious links with SCAMSHIELD AI. Check website addresses and understand potential warning signs.",
+        scan: "Start Scanning",
+        learn: "Learn Security",
+        dashboard: "Security Dashboard",
+        protection: "YOUR PROTECTION CENTER",
+        online: "System Online"
+    },
+    ar: {
+        title: "تصفح بذكاء.",
+        intro: "احمِ نفسك من الروابط المشبوهة باستخدام SCAMSHIELD AI. افحص عناوين المواقع وتعرّف على علامات التحذير.",
+        scan: "ابدأ الفحص",
+        learn: "تعلم الأمان",
+        dashboard: "لوحة التحكم الأمنية",
+        protection: "مركز الحماية الخاص بك",
+        online: "النظام يعمل"
+    }
 };
 
 langBtn.addEventListener("click", () => {
-  currentLang = currentLang === "en" ? "ar" : "en";
-  const isArabic = currentLang === "ar";
+    currentLang = currentLang === "en" ? "ar" : "en";
+    const isArabic = currentLang === "ar";
+    const t = translations[currentLang];
 
-  document.documentElement.lang = currentLang;
-  document.documentElement.dir = isArabic ? "rtl" : "ltr";
+    document.documentElement.lang = currentLang;
+    document.documentElement.dir = isArabic ? "rtl" : "ltr";
 
-  langBtn.textContent = isArabic ? "English" : "العربية";
+    document.getElementById("heroTitle").innerHTML =
+        isArabic ? "تصفح بذكاء.<br><em>ابقَ أكثر أمانًا.</em>"
+                 : "Browse Smarter.<br><em>Stay Safer.</em>";
+
+    document.getElementById("heroIntro").textContent = t.intro;
+    document.getElementById("scanBtn").textContent = t.scan + " →";
+    document.getElementById("learnBtn").textContent = t.learn;
+    document.getElementById("dashboardTitle").textContent = t.dashboard;
+    document.getElementById("protectionTitle").textContent = t.protection;
+    document.getElementById("onlineStatus").textContent = "● " + t.online;
+
+    langBtn.textContent = isArabic ? "English" : "العربية";
 });
-
-
 </script>
 
 </body>
