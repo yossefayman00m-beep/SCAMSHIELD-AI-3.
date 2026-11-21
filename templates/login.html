@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sign In | SCAMSHIELD AI</title>
 
 <style>
@@ -13,92 +13,115 @@
     padding: 0;
 }
 
+:root {
+    --bg: #080f1d;
+    --panel: #101c2e;
+    --border: #263951;
+    --text: #f3f7fc;
+    --muted: #9aabc0;
+    --teal: #19c6b5;
+    --blue: #2585e8;
+}
+
 body {
     min-height: 100vh;
-    background: #dff2ff;
+    padding: 24px;
+    display: grid;
+    place-items: center;
+    background:
+        radial-gradient(ellipse at 15% 15%, #142d43 0, transparent 42%),
+        #080f1d;
+    color: var(--text);
     font-family: Arial, sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 35px;
-    color: white;
 }
 
 .container {
-    width: 100%;
-    max-width: 1250px;
-    min-height: 720px;
+    width: min(1180px, 100%);
+    min-height: 680px;
     display: grid;
-    grid-template-columns: 1fr 1.08fr;
-    background: #101827;
-    border: 3px solid white;
-    border-radius: 25px;
+    grid-template-columns: 1fr 1fr;
     overflow: hidden;
-    box-shadow: 0 25px 80px rgba(0, 30, 70, .25);
+    border: 1px solid #2b4058;
+    border-radius: 18px;
+    background: var(--panel);
+    box-shadow: 0 28px 80px rgba(0,0,0,.38);
 }
 
+/* LOGIN PANEL */
+
 .login-side {
-    padding: 65px 55px;
+    padding: 52px clamp(28px, 5vw, 68px);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background:
-        radial-gradient(circle at 20% 35%,
-        rgba(0, 220, 210, .45), transparent 38%),
-        radial-gradient(circle at 90% 100%,
-        rgba(0, 75, 255, .35), transparent 35%),
-        #101827;
+    background: linear-gradient(145deg, #111f32, #0d1727);
 }
 
 .brand {
-    margin-bottom: 55px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 65px;
 }
 
 .brand img {
-    width: 65px;
-    height: 65px;
+    width: 54px;
+    height: 54px;
     object-fit: contain;
-    margin-bottom: 14px;
 }
 
 .brand h1 {
-    font-size: 26px;
-    letter-spacing: 2px;
+    font-size: 19px;
+    letter-spacing: 1.5px;
 }
 
 .brand p {
-    color: #aab8cc;
-    font-size: 11px;
+    color: var(--muted);
+    font-size: 9px;
     letter-spacing: 2px;
-    margin-top: 7px;
+    margin-top: 6px;
+}
+
+.eyebrow {
+    color: var(--teal);
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2.5px;
+    margin-bottom: 15px;
 }
 
 .heading h2 {
-    font-size: 39px;
-    margin-bottom: 16px;
+    font-size: clamp(30px, 4vw, 40px);
+    letter-spacing: -1px;
+    margin-bottom: 12px;
 }
 
 .heading p {
-    color: #c0cede;
+    color: var(--muted);
     font-size: 14px;
     line-height: 1.7;
     margin-bottom: 35px;
 }
 
-.create-link {
-    color: #16c7b7;
+a {
+    color: var(--teal);
     text-decoration: none;
-    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 .input-group {
-    margin-bottom: 23px;
+    margin-bottom: 22px;
 }
 
 label {
     display: block;
-    margin: 0 0 10px 5px;
-    font-size: 15px;
+    margin-bottom: 10px;
+    color: #dce6f2;
+    font-size: 13px;
+    font-weight: bold;
 }
 
 .input-wrap {
@@ -107,182 +130,162 @@ label {
 
 input {
     width: 100%;
-    height: 55px;
-    border: 1px solid #40516c;
-    border-radius: 11px;
-    padding: 0 17px;
-    background: #f5f8fc;
-    color: #172235;
-    font-size: 15px;
+    height: 54px;
+    padding: 0 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
     outline: none;
+    background: #0b1626;
+    color: white;
+    font-size: 14px;
+    transition: .2s;
+}
+
+input::placeholder {
+    color: #74869d;
 }
 
 input:focus {
-    border-color: #16c7b7;
-    box-shadow: 0 0 0 3px rgba(22,199,183,.2);
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(25,198,181,.1);
 }
 
 .show-password {
     position: absolute;
-    right: 15px;
+    right: 14px;
     top: 50%;
     transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: #087e91;
-    cursor: pointer;
+    border: 0;
+    background: transparent;
+    color: var(--teal);
+    font-size: 11px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .login-btn {
     width: 100%;
-    height: 55px;
-    margin-top: 12px;
-    border: none;
-    border-radius: 12px;
-    background: linear-gradient(100deg, #16c7b7, #087bff);
+    height: 54px;
+    margin-top: 8px;
+    border: 0;
+    border-radius: 8px;
+    background: linear-gradient(100deg, #159f9c, #247bd5);
     color: white;
-    font-size: 17px;
+    font-size: 15px;
     font-weight: bold;
     cursor: pointer;
-    transition: .25s;
+    transition: .2s;
 }
 
 .login-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(22,199,183,.25);
+    filter: brightness(1.12);
+    transform: translateY(-2px);
 }
 
 .flash {
-    background: rgba(255,181,71,.12);
-    border: 1px solid rgba(255,181,71,.4);
-    color: #ffcf85;
-    padding: 12px;
-    border-radius: 9px;
+    padding: 12px 14px;
     margin-bottom: 18px;
+    border: 1px solid #755b32;
+    border-radius: 7px;
+    background: #332a1d;
+    color: #ffcf85;
+    font-size: 13px;
 }
 
 .bottom {
-    margin-top: 28px;
-    color: #b8c5d8;
-    font-size: 14px;
+    margin-top: 27px;
+    color: var(--muted);
     text-align: center;
+    font-size: 13px;
 }
 
 .back {
     display: block;
-    margin-top: 24px;
+    margin-top: 25px;
+    color: var(--muted);
     text-align: center;
-    color: #16c7b7;
-    text-decoration: none;
-    font-size: 14px;
+    font-size: 13px;
 }
 
-/* Digital security visual */
+/* VISUAL PANEL */
 
 .visual-side {
     position: relative;
-    overflow: hidden;
+    min-height: 680px;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    border-left: 1px solid #263951;
     background:
-        radial-gradient(ellipse at center,
-        #064a9a 0%, #06275a 38%, #071529 78%);
+        radial-gradient(ellipse at 50% 45%, #123d69 0, transparent 47%),
+        linear-gradient(145deg, #0c1b30, #091323);
 }
 
-.visual-side::before,
-.visual-side::after {
+.visual-side::before {
     content: "";
     position: absolute;
-    width: 650px;
-    height: 650px;
-    border: 1px solid rgba(0,190,255,.18);
-    border-radius: 50%;
-    box-shadow:
-        0 0 50px rgba(0,120,255,.15),
-        inset 0 0 60px rgba(0,150,255,.1);
-    animation: rotate 25s linear infinite;
+    inset: 0;
+    opacity: .24;
+    background-image:
+        linear-gradient(rgba(67,139,190,.18) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(67,139,190,.18) 1px, transparent 1px);
+    background-size: 38px 38px;
+    mask-image: linear-gradient(to bottom, black, transparent 90%);
 }
 
-.visual-side::after {
-    width: 460px;
-    height: 460px;
-    animation-direction: reverse;
-}
-
-.orbit {
-    position: absolute;
-    width: 520px;
-    height: 180px;
-    border: 1px solid rgba(0,220,255,.3);
-    border-radius: 50%;
-    transform: rotate(-35deg);
-}
-
-.shield {
+.visual-content {
     position: relative;
     z-index: 2;
-    width: 230px;
-    height: 270px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    clip-path: polygon(50% 0%, 95% 17%, 88% 65%, 50% 100%, 12% 65%, 5% 17%);
-    background: linear-gradient(145deg,
-        #00fff0, #078bff 55%, #0645bc);
-    filter: drop-shadow(0 0 35px #00cfff);
-}
-
-.shield-inner {
-    width: 205px;
-    height: 243px;
-    clip-path: polygon(50% 0%, 95% 17%, 88% 65%, 50% 100%, 12% 65%, 5% 17%);
-    background: linear-gradient(145deg, #063b80, #061b42);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.shield-inner span {
-    font-size: 85px;
-    filter: drop-shadow(0 0 15px #00dfff);
-}
-
-.shield-inner small {
-    color: #8cfaff;
-    letter-spacing: 3px;
-    font-size: 11px;
-}
-
-.visual-caption {
-    position: absolute;
-    bottom: 65px;
+    width: 100%;
+    padding: 35px;
     text-align: center;
-    z-index: 3;
-    padding: 0 15px;
 }
 
-.visual-caption h2 {
-    font-size: 25px;
-    margin-bottom: 12px;
+.visual-art {
+    width: min(310px, 75%);
+    margin: 0 auto 38px;
+    filter: drop-shadow(0 0 30px rgba(27,154,224,.22));
 }
 
-.visual-caption p {
-    color: #a8c9e9;
+.visual-content h2 {
+    font-size: 24px;
+    margin-bottom: 13px;
+}
+
+.visual-content p {
+    max-width: 370px;
+    margin: auto;
+    color: #9fb4cb;
     font-size: 13px;
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
-@keyframes rotate {
-    to { transform: rotate(360deg); }
+.security-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 27px;
+    padding: 9px 15px;
+    border: 1px solid #294b65;
+    border-radius: 30px;
+    background: rgba(15,40,62,.6);
+    color: #9edfdc;
+    font-size: 10px;
+    letter-spacing: 1.5px;
 }
 
-@media(max-width: 850px) {
+.security-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 10px var(--teal);
+}
+
+@media(max-width: 800px) {
     body {
-        padding: 15px;
+        padding: 14px;
     }
 
     .container {
@@ -290,29 +293,31 @@ input:focus {
     }
 
     .login-side {
-        padding: 40px 28px;
-    }
-
-    .visual-side {
-        min-height: 390px;
+        padding: 38px 28px;
     }
 
     .brand {
-        margin-bottom: 35px;
+        margin-bottom: 42px;
     }
 
-    .heading h2 {
-        font-size: 32px;
+    .visual-side {
+        min-height: 440px;
+        border-left: 0;
+        border-top: 1px solid #263951;
+    }
+
+    .visual-art {
+        width: 210px;
     }
 }
 
 @media(max-width: 420px) {
-    .visual-side {
-        min-height: 330px;
+    .login-side {
+        padding: 32px 21px;
     }
 
-    .shield {
-        transform: scale(.8);
+    .heading h2 {
+        font-size: 31px;
     }
 }
 </style>
@@ -320,23 +325,27 @@ input:focus {
 
 <body>
 
-<div class="container">
+<main class="container">
 
     <section class="login-side">
 
         <div class="brand">
-            <img src="{{ url_for('static', filename='d538ddeb-d47d-46ed-b900-54e9f63cf324.png') }}"
-                 alt="SCAMSHIELD AI">
-            <h1>SCAMSHIELD AI</h1>
-            <p>SMART LINK PROTECTION</p>
+            <img
+                src="{{ url_for('static', filename='d538ddeb-d47d-46ed-b900-54e9f63cf324.png') }}"
+                alt="SCAMSHIELD AI Logo">
+            <div>
+                <h1>SCAMSHIELD AI</h1>
+                <p>SMART LINK PROTECTION</p>
+            </div>
         </div>
 
         <div class="heading">
-            <h2>Sign In</h2>
+            <div class="eyebrow">SECURE ACCESS</div>
+            <h2>Welcome Back.</h2>
             <p>
-                Welcome back to your digital security center.
-                Don't have an account?
-                <a class="create-link" href="{{ url_for('register') }}">Create now</a>
+                Sign in to access your security dashboard.
+                New here?
+                <a href="{{ url_for('register') }}">Create an account</a>
             </p>
         </div>
 
@@ -361,7 +370,6 @@ input:focus {
 
             <div class="input-group">
                 <label for="password">Password</label>
-
                 <div class="input-wrap">
                     <input
                         type="password"
@@ -371,22 +379,23 @@ input:focus {
                         autocomplete="current-password"
                         required>
 
-                    <button type="button"
-                            class="show-password"
-                            onclick="togglePassword()">
+                    <button
+                        type="button"
+                        class="show-password"
+                        onclick="togglePassword()">
                         SHOW
                     </button>
                 </div>
             </div>
 
-            <button type="submit" class="login-btn">
-                Sign In →
+            <button class="login-btn" type="submit">
+                Sign In <span aria-hidden="true">→</span>
             </button>
 
         </form>
 
         <div class="bottom">
-            Protected by SCAMSHIELD AI
+            Your security is our priority.
         </div>
 
         <a href="{{ url_for('index') }}" class="back">
@@ -397,26 +406,97 @@ input:focus {
 
     <section class="visual-side">
 
-        <div class="orbit"></div>
+        <div class="visual-content">
 
-        <div class="shield">
-            <div class="shield-inner">
-                <span>🔐</span>
-                <small>SECURE ACCESS</small>
-            </div>
-        </div>
+            <svg class="visual-art"
+                 viewBox="0 0 320 340"
+                 xmlns="http://www.w3.org/2000/svg"
+                 role="img"
+                 aria-label="Digital security shield">
 
-        <div class="visual-caption">
-            <h2>Your Digital Safety Matters</h2>
+                <defs>
+                    <linearGradient id="shieldGradient"
+                        x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stop-color="#28d8d0"/>
+                        <stop offset="1" stop-color="#2679ed"/>
+                    </linearGradient>
+
+                    <linearGradient id="innerGradient"
+                        x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#153e67"/>
+                        <stop offset="1" stop-color="#0b203a"/>
+                    </linearGradient>
+                </defs>
+
+                <circle cx="160" cy="155" r="145"
+                    fill="none" stroke="#1d6597"
+                    stroke-opacity=".3" stroke-width="1"/>
+
+                <circle cx="160" cy="155" r="119"
+                    fill="none" stroke="#20b9c8"
+                    stroke-opacity=".22" stroke-width="1"/>
+
+                <path d="M160 28 L265 72 L249 210
+                    Q231 274 160 312
+                    Q89 274 71 210 L55 72 Z"
+                    fill="url(#shieldGradient)"
+                    opacity=".95"/>
+
+                <path d="M160 43 L248 80 L234 205
+                    Q218 258 160 291
+                    Q102 258 86 205 L72 80 Z"
+                    fill="url(#innerGradient)"
+                    stroke="#62e5ed"
+                    stroke-opacity=".65"
+                    stroke-width="2"/>
+
+                <path d="M160 43 L248 80 L234 205"
+                    fill="none" stroke="#8af8f2"
+                    stroke-opacity=".5" stroke-width="2"/>
+
+                <rect x="112" y="145" width="96" height="73"
+                    rx="10" fill="#102a48"
+                    stroke="#28c8d4" stroke-width="3"/>
+
+                <path d="M132 145 V120
+                    A28 28 0 0 1 188 120 V145"
+                    fill="none" stroke="#43d9e2"
+                    stroke-width="10" stroke-linecap="round"/>
+
+                <circle cx="160" cy="177" r="9"
+                    fill="#48dce0"/>
+
+                <path d="M160 184 V198"
+                    stroke="#48dce0"
+                    stroke-width="6"
+                    stroke-linecap="round"/>
+
+                <path d="M112 235 H208"
+                    stroke="#3b9fd2"
+                    stroke-opacity=".5"/>
+
+                <path d="M130 249 H190"
+                    stroke="#3b9fd2"
+                    stroke-opacity=".35"/>
+            </svg>
+
+            <h2>Security Without Compromise</h2>
+
             <p>
-                Browse smarter. Stay safer.<br>
-                Protect your online experience.
+                Protect your digital journey with smarter
+                link analysis and a safer browsing experience.
             </p>
+
+            <div class="security-label">
+                <span class="security-dot"></span>
+                SCAMSHIELD PROTECTION
+            </div>
+
         </div>
 
     </section>
 
-</div>
+</main>
 
 <script>
 function togglePassword() {
