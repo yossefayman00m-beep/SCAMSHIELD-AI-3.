@@ -33,31 +33,32 @@
 <main id="home">
 
 <section class="hero">
-    <span class="eyebrow">✦ YOUR DIGITAL SECURITY PARTNER</span>
-
-    <h1>
+    <span class="eyebrow">✦ YOUR DIGITAL SECURITY PARTNER</span
+<h1 id="heroTitle">
+  <h1 id="heroTitle">
+  Browse Smarter.<br>
+  <em>Stay Safer.</em>
+</h1>
         Browse Smarter.<br>
-        <em>Stay Safer.</em>
-    </h1>
-
-    <p class="intro">
-        Protect yourself from suspicious links with SCAMSHIELD AI.
-        Check website addresses and understand potential warning signs.
-    </p>
-
+        <p class="intro" id="heroIntro">
+  Protect yourself from suspicious links with SCAMSHIELD AI.
+  Check website addresses and understand potential warning signs.
+</p>      
+    
     <div class="hero-buttons">
-        <a href="#scanner" class="primary-btn">Start Scanning →</a>
-        <a href="#awareness" class="secondary-btn">Learn Security</a>
-    </div>
+        
+<a href="#scanner" class="primary-btn" id="scanBtn">Start Scanning →</a>
+<a href="#awareness" class="secondary-btn" id="learnBtn">Learn Security</a>    
+    
 </section>
 
 <section class="dashboard">
     <div class="section-heading">
         <div>
-            <span class="eyebrow">YOUR PROTECTION CENTER</span>
-            <h2>Security Dashboard</h2>
+            <span class="eyebrow" id="protectionTitle">YOUR PROTECTION CENTER</span>
+            <h2 id="dashboardTitle">Security Dashboard</h2>
         </div>
-        <span class="status">● System Online</span>
+        <span class="status" id="onlineStatus">● System Online</span>
     </div>
 
     <div class="dashboard-grid">
@@ -178,11 +179,43 @@ themeBtn.addEventListener("click", () => {
         document.body.classList.contains("light-mode") ? "🌙" : "☀️";
 });
 
+
 const langBtn = document.getElementById("langBtn");
 
+let currentLang = "en";
+
+const translations = {
+  en: {
+    title: "Stay Safe",
+    intro: "Protect yourself from suspicious links with SCAMSHIELD AI. Check website addresses and understand potential warning signs.",
+    scan: "Start Scanning",
+    learn: "Learn Security",
+    dashboard: "Security Dashboard",
+    protection: "YOUR PROTECTION CENTER",
+    online: "System Online"
+  },
+  ar: {
+    title: "ابقَ آمناً",
+    intro: "احمِ نفسك من الروابط المشبوهة باستخدام SCAMSHIELD AI. افحص عناوين المواقع وتعرّف على علامات التحذير.",
+    scan: "ابدأ الفحص",
+    learn: "تعلم الأمان",
+    dashboard: "لوحة التحكم الأمنية",
+    protection: "مركز الحماية الخاص بك",
+    online: "النظام يعمل"
+  }
+};
+
 langBtn.addEventListener("click", () => {
-    alert("Arabic translation will be added in the next development stage.");
+  currentLang = currentLang === "en" ? "ar" : "en";
+  const isArabic = currentLang === "ar";
+
+  document.documentElement.lang = currentLang;
+  document.documentElement.dir = isArabic ? "rtl" : "ltr";
+
+  langBtn.textContent = isArabic ? "English" : "العربية";
 });
+
+
 </script>
 
 </body>
