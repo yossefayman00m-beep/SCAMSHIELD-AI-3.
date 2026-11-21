@@ -1,41 +1,189 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SCAMSHIELD AI | Link Risk Checker</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SCAMSHIELD AI | Cyber Security</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<header>
+
+<header class="navbar">
     <div class="brand">
-        <img src="{{ url_for('static', filename='d538ddeb-d47d-46ed-b900-54e9f63cf324.png') }}" class="logo" alt="SCAMSHIELD AI">
+        <img src="{{ url_for('static', filename='d538ddeb-d47d-46ed-b900-54e9f63cf324.png') }}" class="logo" alt="Logo">
         <div>
-            <b>SCAMSHIELD</b>
-            <small>AI LINK RISK CHECKER</small>
+            <b>SCAMSHIELD AI</b>
+            <small>SMART LINK PROTECTION</small>
         </div>
     </div>
-    <span class="tag">HACKATHON MVP</span>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#scanner">Scanner</a>
+        <a href="#awareness">Security Tips</a>
+    </nav>
+
+    <div class="nav-actions">
+        <button type="button" id="themeBtn">☀️</button>
+        <button type="button" id="langBtn">العربية</button>
+    </div>
 </header>
 
-  <section class="hero">
-    <p class="eyebrow">THINK BEFORE YOU CLICK</p>
-    <h1>Check a link.<br><em>Stay one step ahead.</em></h1>
-    <p class="intro">A prototype that checks a website address for common warning signs and explains what it finds.</p>
-    <form method="post">
-      <label for="url">Website address</label>
-      <div class="inputrow"><input id="url" name="url" value="{{ submitted }}" placeholder="example.com or https://example.com" required><button>CHECK LINK</button></div>
+<main id="home">
+
+<section class="hero">
+    <span class="eyebrow">✦ YOUR DIGITAL SECURITY PARTNER</span>
+
+    <h1>
+        Browse Smarter.<br>
+        <em>Stay Safer.</em>
+    </h1>
+
+    <p class="intro">
+        Protect yourself from suspicious links with SCAMSHIELD AI.
+        Check website addresses and understand potential warning signs.
+    </p>
+
+    <div class="hero-buttons">
+        <a href="#scanner" class="primary-btn">Start Scanning →</a>
+        <a href="#awareness" class="secondary-btn">Learn Security</a>
+    </div>
+</section>
+
+<section class="dashboard">
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow">YOUR PROTECTION CENTER</span>
+            <h2>Security Dashboard</h2>
+        </div>
+        <span class="status">● System Online</span>
+    </div>
+
+    <div class="dashboard-grid">
+        <article class="dash-card">
+            <span>🛡️</span>
+            <h3>Link Scanner</h3>
+            <p>Check website addresses for suspicious indicators.</p>
+            <a href="#scanner">Open Scanner →</a>
+        </article>
+
+        <article class="dash-card">
+            <span>📊</span>
+            <h3>Risk Analysis</h3>
+            <p>Understand the warning signs found in a link.</p>
+            <a href="#scanner">Analyze a Link →</a>
+        </article>
+
+        <article class="dash-card">
+            <span>🎓</span>
+            <h3>Security Academy</h3>
+            <p>Learn how to recognize online scams.</p>
+            <a href="#awareness">Explore Tips →</a>
+        </article>
+    </div>
+</section>
+
+<section class="scanner-section" id="scanner">
+    <span class="eyebrow">ADVANCED LINK CHECKER</span>
+    <h2>Check Before You Click</h2>
+    <p>Enter a website address to examine common risk indicators.</p>
+
+    <form method="POST">
+        <label for="url">Website Address</label>
+        <div class="inputrow">
+            <input
+                id="url"
+                name="url"
+                value="{{ submitted }}"
+                placeholder="https://example.com"
+                required
+            >
+            <button type="submit">SCAN LINK</button>
+        </div>
     </form>
-    <p class="privacy">Demo tip: use a link as text only. Do not open suspicious links to test them.</p>
-  </section>
-  {% if result %}
-  <section class="result">
-    <div class="resulttop"><div><p class="eyebrow">SCAN RESULT</p><h2>{{ result.level }}</h2></div><div class="score">{{ result.score }}<small>/100</small></div></div>
-    <div class="meter"><span style="width: {{ result.score }}%"></span></div>
-    <h3>What we noticed</h3><ul>{% for reason in result.reasons %}<li>{{ reason }}</li>{% endfor %}</ul>
-  </section>
-  {% endif %}
-  <section class="how"><h2>How it works</h2><div class="cards"><article><b>01</b><h3>Inspect</h3><p>Checks the URL structure and domain.</p></article><article><b>02</b><h3>Assess</h3><p>Looks for a small set of known warning signs.</p></article><article><b>03</b><h3>Explain</h3><p>Shows a score and the reasons behind it.</p></article></div></section>
-  <aside><b>Important:</b> A low score does not mean a website is safe. This MVP uses transparent rules, not a trained AI model or live threat-intelligence database. Never enter passwords, payment details, or personal information on a site you do not trust.</aside>
+
+    <p class="privacy">🔒 Never open suspicious links just to test them.</p>
+
+    {% if result %}
+    <div class="result">
+        <div class="resulttop">
+            <div>
+                <span class="eyebrow">SCAN RESULT</span>
+                <h2>{{ result.level }}</h2>
+            </div>
+            <div class="score">{{ result.score }}<small>/100</small></div>
+        </div>
+
+        <div class="meter">
+            <span style="width: {{ result.score }}%"></span>
+        </div>
+
+        <h3>What We Found</h3>
+        <ul>
+            {% for reason in result.reasons %}
+            <li>{{ reason }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</section>
+
+<section class="awareness" id="awareness">
+    <span class="eyebrow">STAY INFORMED</span>
+    <h2>Cyber Security Tips</h2>
+
+    <div class="dashboard-grid">
+        <article class="dash-card">
+            <span>🔗</span>
+            <h3>Check URLs</h3>
+            <p>Always examine website addresses before trusting them.</p>
+        </article>
+
+        <article class="dash-card">
+            <span>🔐</span>
+            <h3>Protect Passwords</h3>
+            <p>Never share your passwords through unknown links.</p>
+        </article>
+
+        <article class="dash-card">
+            <span>⚠️</span>
+            <h3>Watch for Scams</h3>
+            <p>Be careful with unexpected messages and urgent requests.</p>
+        </article>
+    </div>
+</section>
+
+<aside class="notice">
+    <b>Important Security Notice</b>
+    <p>
+        SCAMSHIELD AI is an educational prototype.
+        Its current checks use simple rules and cannot guarantee
+        that a website is safe or malicious.
+    </p>
+</aside>
+
 </main>
-<footer>SCAMSHIELD AI · Educational prototype · Built for demonstration</footer>
-</body></html>
+
+<footer>
+    SCAMSHIELD AI © 2026 — Browse Smarter. Stay Safer.
+</footer>
+
+<script>
+const themeBtn = document.getElementById("themeBtn");
+
+themeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("light-mode");
+    themeBtn.textContent =
+        document.body.classList.contains("light-mode") ? "🌙" : "☀️";
+});
+
+const langBtn = document.getElementById("langBtn");
+
+langBtn.addEventListener("click", () => {
+    alert("Arabic translation will be added in the next development stage.");
+});
+</script>
+
+</body>
+</html>
