@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan History | SCAMSHIELD AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="auth-container">
+        <h1>SCAMSHIELD AI</h1>
+        <h2>Scan History</h2>
+
+        {% if history %}
+            {% for item in history %}
+                <div class="history-item">
+                    <p><strong>URL:</strong> {{ item.url }}</p>
+                    <p><strong>Risk:</strong> {{ item.level }}</p>
+                    <p><strong>Score:</strong> {{ item.score }}</p>
+                    <p><strong>Date:</strong> {{ item.created_at }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No scans yet.</p>
+        {% endif %}
+
+        <a href="{{ url_for('index') }}">Back to Home</a>
+    </main>
+</body>
+</html>
